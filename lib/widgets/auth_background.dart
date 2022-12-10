@@ -11,11 +11,7 @@ class AuthBackground extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       child: Stack(
-        children: [
-          _PurpleBox(), 
-          _Headericon(),
-          this.child
-          ],
+        children: [_PurpleBox(), _Headericon(), this.child],
       ),
     );
   }
@@ -27,8 +23,8 @@ class _Headericon extends StatelessWidget {
     return SafeArea(
       child: Container(
         width: double.infinity,
-        margin: EdgeInsets.only(top: 30),
-        child: Icon(
+        margin: const EdgeInsets.only(top: 30),
+        child: const Icon(
           Icons.person_pin,
           color: Colors.white,
           size: 100,

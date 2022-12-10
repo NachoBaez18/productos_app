@@ -5,8 +5,8 @@ import 'package:productos_app/ui/input_decorations.dart';
 import 'package:productos_app/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegistreScreen extends StatelessWidget {
+  const RegistreScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class LoginScreen extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    'Login',
+                    'Crear Cuenta',
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   const SizedBox(
@@ -46,10 +46,9 @@ class LoginScreen extends StatelessWidget {
                   overlayColor:
                       MaterialStateProperty.all(Colors.indigo.withOpacity(0.1)),
                   shape: MaterialStateProperty.all(StadiumBorder())),
-              onPressed: () =>
-                  Navigator.pushReplacementNamed(context, 'registre'),
+              onPressed: () => Navigator.pushReplacementNamed(context, 'login'),
               child: const Text(
-                'Crear una nueva cuenta',
+                '¿Ya tienes una cuenta?',
                 style: TextStyle(fontSize: 18, color: Colors.black87),
               ),
             ),
@@ -142,14 +141,13 @@ class _LoginForm extends StatelessWidget {
 
                           //validar si es valido es correo
 
-                          final String? errorMessage = await authService.login(
-                              loginForm.email, loginForm.password);
+                          final String? errorMessage = await authService
+                              .createuser(loginForm.email, loginForm.password);
 
                           if (errorMessage == null) {
                             Navigator.pushReplacementNamed(context, 'home');
                           } else {
-                            // print(errorMessage);
-                            NotificationsServices.showSnackbar(errorMessage);
+                            print(errorMessage);
                             loginForm.isLoading = false;
                           }
                         }),
